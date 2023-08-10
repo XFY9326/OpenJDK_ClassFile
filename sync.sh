@@ -26,4 +26,6 @@ fi
 
 cp -r "$CACHE_DIR/$INPUT_DIR" "$OUTPUT_DIR"
 
-
+if [ -f "$OUTPUT_DIR/module-info.java" ]; then
+  rm -rf "$OUTPUT_DIR/module-info.java"
+fi
