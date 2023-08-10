@@ -1,0 +1,21 @@
+name: Automatic update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 0 * * *'
+
+jobs:
+  Update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Code sync
+      run: sh sync.sh
+    - name: Push updates
+      uses: GuillaumeFalourd/git-commit-push@v1.3
+      with:
+        commit_message: Automatic update commit
